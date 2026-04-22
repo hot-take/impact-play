@@ -1,4 +1,4 @@
-import { createClient, createAdminClient } from '@/utils/supabase/server'
+import { createAdminClient } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { Trash2, Pencil, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'

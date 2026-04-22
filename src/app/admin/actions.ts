@@ -1,6 +1,6 @@
 'use server'
 
-import { createClient, createAdminClient } from '@/utils/supabase/server'
+import { createAdminClient } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { sendWinnerAlertEmail, sendDrawResultsEmail } from '@/utils/notifications'
 
@@ -62,12 +62,6 @@ export async function publishDraw(drawId: string) {
   const poolPerUser = 6.00
   const totalPool = (activeUsers.length * poolPerUser) + Number(draw.jackpot_rollover || 0)
 
-  // Fetch emails for all active users (for draw result notifications)
-  const { data: userEmails } = await supabase
-    .from('profiles')
-    .select('id, stripe_customer_id')
-    .eq('subscription_status', 'active')
-  
   const shares = {
     tier1: totalPool * 0.40, // 5 matches (Jackpot)
     tier2: totalPool * 0.35, // 4 matches

@@ -4,9 +4,8 @@ import Link from 'next/link'
 import ScoreEntryForm from './ScoreEntryForm'
 import ScoreHistory from './ScoreHistory'
 import { signout } from '@/app/(auth)/actions'
-import { submitProof } from './actions'
 import ChangeCharityModal from './ChangeCharityModal'
-import { Heart, Calendar, Trophy } from 'lucide-react'
+import { Heart, Trophy } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
@@ -48,12 +47,10 @@ export default async function DashboardPage() {
     .limit(5)
 
   const totalDrawsEntered = winnings?.length || 0
-  const nextDraw = allDraws?.find(d => d.status === 'simulated')
   const latestPublishedDraw = allDraws?.find(d => d.status === 'published')
   const winningNumbers = new Set(latestPublishedDraw?.winning_numbers || [])
 
   const totalWon = winnings?.filter(w => w.status === 'paid').reduce((acc, curr) => acc + Number(curr.prize_amount), 0) || 0
-  const totalPending = winnings?.filter(w => w.status !== 'paid').reduce((acc, curr) => acc + Number(curr.prize_amount), 0) || 0
 
   return (
     <div className="min-h-screen bg-[var(--background)]">

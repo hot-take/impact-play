@@ -1,4 +1,4 @@
-import { createClient, createAdminClient } from '@/utils/supabase/server'
+import { createAdminClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import AdminClientComponents from './AdminClientComponents'
 import { publishDraw } from './actions'
@@ -109,7 +109,7 @@ export default async function AdminDashboard() {
         </div>
         
         {(!draws || draws.length === 0) ? (
-          <p className="opacity-50 text-center py-8">No draws run yet. Click "Simulate Draw" to begin.</p>
+          <p className="opacity-50 text-center py-8">No draws run yet. Click &quot;Simulate Draw&quot; to begin.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">

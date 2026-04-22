@@ -1,4 +1,4 @@
-import { createClient, createAdminClient } from '@/utils/supabase/server'
+import { createAdminClient } from '@/utils/supabase/server'
 import { verifyWinnerProof } from '../actions'
 import { revalidatePath } from 'next/cache'
 import Link from 'next/link'

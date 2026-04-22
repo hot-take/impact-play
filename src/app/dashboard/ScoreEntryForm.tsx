@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { addScore } from './actions'
-import { Plus } from 'lucide-react'
 
 export default function ScoreEntryForm() {
   const [error, setError] = useState('')
