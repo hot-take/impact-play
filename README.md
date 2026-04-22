@@ -54,4 +54,4 @@ Visit `http://localhost:3000` to see the application in action.
 
 ---
 
-Built with ❤️ by Digital Heroes.
+
