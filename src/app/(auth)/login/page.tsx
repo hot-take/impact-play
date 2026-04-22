@@ -5,6 +5,31 @@ import { motion } from 'framer-motion'
 import { Heart, ArrowRight, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { login } from '../actions'
+import { useFormStatus } from 'react-dom'
+
+function SubmitButton() {
+  const { pending } = useFormStatus()
+  
+  return (
+    <button 
+      formAction={login}
+      disabled={pending}
+      className="btn-primary w-full flex items-center justify-center gap-2 group mt-6 disabled:opacity-70 disabled:cursor-wait"
+    >
+      {pending ? (
+        <>
+          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+          <span>Signing In...</span>
+        </>
+      ) : (
+        <>
+          <span>Sign In</span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </>
+      )}
+    </button>
+  )
+}
 
 export default function LoginPage({
   searchParams,
@@ -84,13 +109,7 @@ export default function LoginPage({
               />
             </div>
 
-            <button 
-              formAction={login}
-              className="btn-primary w-full flex items-center justify-center gap-2 group mt-6"
-            >
-              Sign In
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            <SubmitButton />
           </form>
 
           <div className="mt-6 text-center text-sm opacity-70">

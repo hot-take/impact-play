@@ -5,8 +5,33 @@ import { Heart, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { signup } from '../actions'
+import { useFormStatus } from 'react-dom'
 
 type Charity = { id: string; name: string; featured: boolean }
+
+function SubmitButton() {
+  const { pending } = useFormStatus()
+  
+  return (
+    <button 
+      type="submit"
+      disabled={pending}
+      className="btn-primary w-full flex items-center justify-center gap-2 group mt-6 disabled:opacity-70 disabled:cursor-wait"
+    >
+      {pending ? (
+        <>
+          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+          <span>Creating Account...</span>
+        </>
+      ) : (
+        <>
+          <span>Create Account</span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </>
+      )}
+    </button>
+  )
+}
 
 export default function SignupForm({ error }: { error?: string }) {
   const [charities, setCharities] = useState<Charity[]>([])
@@ -137,13 +162,7 @@ export default function SignupForm({ error }: { error?: string }) {
             </div>
           </div>
 
-          <button 
-            type="submit"
-            className="btn-primary w-full flex items-center justify-center gap-2 group mt-6"
-          >
-            Create Account
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
+          <SubmitButton />
         </form>
 
         <div className="mt-6 text-center text-sm opacity-70">

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Heart, Search } from 'lucide-react'
@@ -74,10 +75,9 @@ export default function CharityList({ initialCharities }: { initialCharities: Ch
             transition={{ delay: i * 0.05 }}
             className="glass rounded-2xl p-6 flex flex-col h-full hover:border-[var(--color-brand)]/50 transition-colors"
           >
-            <div className="w-full h-40 bg-white/5 rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+            <div className="w-full h-40 relative rounded-xl mb-4 flex items-center justify-center overflow-hidden bg-white/5">
               {charity.image_url ? (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img src={charity.image_url} alt={charity.name} className="w-full h-full object-cover" />
+                <Image src={charity.image_url} alt={charity.name} fill className="object-cover" />
               ) : (
                 <Heart className="w-10 h-10 opacity-20" />
               )}

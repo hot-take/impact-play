@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Heart, Trophy, Globe, ArrowRight, Sparkles } from 'lucide-react'
@@ -69,10 +70,12 @@ export default function HomeClient({ featuredCharities }: { featuredCharities: C
             className="relative"
           >
             <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl">
-              <img 
+              <Image 
                 src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop" 
                 alt="Global Impact" 
-                className="w-full h-full object-cover"
+                fill
+                priority
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-black/10 mix-blend-overlay" />
             </div>
@@ -109,7 +112,7 @@ export default function HomeClient({ featuredCharities }: { featuredCharities: C
             </div>
           </motion.div>
         </section>
-        
+
         {/* Bento Box Features */}
         <div className="grid md:grid-cols-3 gap-8 mt-48 w-full text-left max-w-7xl mx-auto px-4">
           {/* Main Feature - Large */}
@@ -125,7 +128,12 @@ export default function HomeClient({ featuredCharities }: { featuredCharities: C
               <p className="opacity-40 max-w-md text-lg leading-relaxed font-light">Your best 5 scores from the last 30 days are automatically entered into our monthly verified draw. Play your game, earn your entry.</p>
             </div>
             <div className="absolute top-0 right-0 w-[50%] h-full opacity-10 grayscale group-hover:grayscale-0 transition-all duration-1000">
-              <img src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070&auto=format&fit=crop" alt="Golf" className="w-full h-full object-cover" />
+              <Image 
+                src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070&auto=format&fit=crop" 
+                alt="Golf" 
+                fill
+                className="object-cover" 
+              />
             </div>
             <div className="relative z-10 flex gap-3 mt-12">
               {[38, 41, 39, 44, 40].map((s, i) => (
@@ -175,7 +183,12 @@ export default function HomeClient({ featuredCharities }: { featuredCharities: C
               <p className="text-white/40 mt-6 max-w-sm uppercase tracking-widest text-[9px] leading-loose">Spanning 6 continents, our community-driven funds provide relief to over 84 nations in critical need.</p>
             </div>
             <div className="hidden md:block absolute right-0 top-0 w-1/3 h-full opacity-20 group-hover:opacity-40 transition-opacity">
-               <img src="https://images.unsplash.com/photo-1521295121330-bf2a4482aa30?q=80&w=2070&auto=format&fit=crop" alt="World" className="w-full h-full object-cover" />
+               <Image 
+                src="https://images.unsplash.com/photo-1521295121330-bf2a4482aa30?q=80&w=2070&auto=format&fit=crop" 
+                alt="World" 
+                fill
+                className="object-cover" 
+              />
             </div>
             <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-accent)]/20 to-transparent" />
           </motion.div>
@@ -214,10 +227,11 @@ export default function HomeClient({ featuredCharities }: { featuredCharities: C
                 >
                   <div className="relative aspect-square rounded-2xl overflow-hidden mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
                     {charity.image_url ? (
-                      <img
+                      <Image
                         src={charity.image_url}
                         alt={charity.name}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                     ) : (
                       <div className="w-full h-full bg-zinc-50 flex items-center justify-center">
