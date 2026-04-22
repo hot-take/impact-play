@@ -120,21 +120,21 @@ export default async function AdminWinnersPage() {
                       <div className="flex gap-2 flex-wrap">
                         {entry.status === 'pending_proof' && (
                           <>
-                            <form action={verifyWinnerProof.bind(null, entry.id, 'approve')}>
+                            <form action={async () => { 'use server'; await verifyWinnerProof(entry.id, 'approve') }}>
                               <button className="text-xs font-medium text-green-400 hover:underline bg-green-400/10 px-2 py-1 rounded">Approve</button>
                             </form>
-                            <form action={rejectProof.bind(null, entry.id)}>
+                            <form action={async () => { 'use server'; await rejectProof(entry.id) }}>
                               <button className="text-xs font-medium text-red-400 hover:underline bg-red-400/10 px-2 py-1 rounded">Reject</button>
                             </form>
                           </>
                         )}
                         {entry.status === 'verified' && (
-                          <form action={markPaid.bind(null, entry.id)}>
+                          <form action={async () => { 'use server'; await markPaid(entry.id) }}>
                             <button className="text-xs font-medium text-blue-400 hover:underline bg-blue-400/10 px-2 py-1 rounded">Mark Paid</button>
                           </form>
                         )}
                         {entry.status === 'rejected' && (
-                          <form action={verifyWinnerProof.bind(null, entry.id, 'approve')}>
+                          <form action={async () => { 'use server'; await verifyWinnerProof(entry.id, 'approve') }}>
                             <button className="text-xs font-medium text-yellow-400 hover:underline bg-yellow-400/10 px-2 py-1 rounded">Re-Approve</button>
                           </form>
                         )}

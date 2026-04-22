@@ -1,4 +1,4 @@
-import { createAdminClient } from '@/utils/supabase/server'
+import { createClient, createAdminClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import AdminClientComponents from './AdminClientComponents'
 import { publishDraw } from './actions'
@@ -143,7 +143,7 @@ export default async function AdminDashboard() {
                     </td>
                     <td className="py-3 px-4">
                       {draw.status === 'simulated' && draw.winning_numbers?.length > 0 && (
-                        <form action={publishDraw.bind(null, draw.id)}>
+                        <form action={async () => { 'use server'; await publishDraw(draw.id) }}>
                           <button className="text-sm font-medium text-[var(--color-brand-light)] hover:underline bg-[var(--color-brand)]/10 px-3 py-1 rounded">
                             Publish & Award
                           </button>
