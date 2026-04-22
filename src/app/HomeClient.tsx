@@ -184,9 +184,10 @@ export default function HomeClient({ featuredCharities }: { featuredCharities: C
             </div>
             <div className="hidden md:block absolute right-0 top-0 w-1/3 h-full opacity-20 group-hover:opacity-40 transition-opacity">
                <Image 
-                src="https://images.unsplash.com/photo-1521295121330-bf2a4482aa30?q=80&w=2070&auto=format&fit=crop" 
+                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" 
                 alt="World" 
                 fill
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover" 
               />
             </div>
